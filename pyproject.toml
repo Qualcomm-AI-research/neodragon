@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools_scm[toml]>=8.1"]
+
+[project]
+name = "Neodragon"
+version = "1.0.0"
+authors = [
+    { name = "Animesh Karnewar", email = "karnewar@qualcomm.com" },
+    { name = "Denis Korzhenkov", email = "dkorzhen@qualcomm.com" },
+    { name = "Ioannis Lelekas", email = "ilelekas@qualcomm.com" },
+    { name = "Adil Karjauv", email = "akarjauv@qualcomm.com" },
+    { name = "Noor Fathima", email = "noor@qualcomm.com" },
+    { name = "Hanwen Xiong", email = "hanwxion@qualcomm.com" },
+    { name = "Vancheeswaran Vaidyanathan", email = "vanchees@qualcomm.com" },
+    { name = "Will Zeng", email = "wzeng@qualcomm.com" },
+    { name = "Rafael Esteves", email = "resteves@qualcomm.com" },
+    { name = "Tushar Singhal", email = "tsinghal@qualcomm.com" },
+    { name = "Fatih Porikli", email = "fporikli@qualcomm.com" },
+    { name = "Mohsen Ghafoorian", email = "mghafoor@qualcomm.com" },
+    { name = "Amirhossein Habibian", email = "ahabibia@qualcomm.com" },
+]
+description = ""
+license = { text = "BSD-3-clause" }
+requires-python = ">=3.10.12"
+
+[project.urls]
+Homepage = "https://qualcomm-ai-research.github.io/neodragon"
+Documentation = "https://github.com/Qualcomm-AI-research/Neodragon/-/blob/main/README.md"
+Repository = "https://github.com/Qualcomm-AI-research/Neodragon.git"
+
+[tool.setuptools]
+script-files = ["scripts/inference_neodragon.py", "scripts/make_fixed_video_grid.py"]
+
+[tool.setuptools.packages.find]
+exclude = ["assets", "docker", "prompts", "models", "output"]
