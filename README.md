@@ -29,7 +29,7 @@
     <img src="https://img.shields.io/badge/arXiv-2511.06055-b31b1b.svg" alt="arXiv">
   </a>
   <a href="https://huggingface.co/karnewar/Neodragon">
-    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue" alt="Hugging Face Model">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue" alt="Hugging Face Checkpoint">
   </a>
   <a href="https://openreview.net/forum?id=XBzIhhwv8d">
     <img src="https://img.shields.io/badge/ICLR%202026-OpenReview-8A2BE2" alt="ICLR 2026 OpenReview">
