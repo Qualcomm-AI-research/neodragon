@@ -1,0 +1,56 @@
+{
+  "extends": "https://raw.githubusercontent.com/qualcomm/.github/main/repolint.json",
+  "rules": {
+    "source-license-headers-exist": {
+      "level": "error",
+      "rule": {
+        "type": "file-starts-with",
+        "options": {
+          "globsAll": [
+            "**/*.py",
+            "**/*.js",
+            "**/*.c",
+            "**/*.cc",
+            "**/*.cpp",
+            "**/*.h",
+            "**/*.ts",
+            "**/*.sh",
+            "**/*.rs",
+            "**/*.java",
+            "**/*.go",
+            "**/*.bbclass",
+            "**/*.S"
+          ],
+          "skip-paths-matching": {
+            "patterns": [
+              "babel.config.js",
+              "build\/",
+              "jest.config.js",
+              "node_modules\/",
+              "types\/",
+              "uthash.h",
+              "test-data\/",
+              "neodragon/asymmetric_causal_video_vae/__init__.py",
+              "neodragon/asymmetric_causal_video_vae/decoder.py",
+              "neodragon/asymmetric_causal_video_vae/encoder.py",
+              "neodragon/asymmetric_causal_video_vae/modeling_block.py",
+              "neodragon/asymmetric_causal_video_vae/modeling_causal_ops.py",
+              "neodragon/asymmetric_causal_video_vae/modeling_resnet.py",
+              "neodragon/pyramid_mmdit/__init__.py",
+              "neodragon/pyramid_mmdit/modeling_block.py",
+              "neodragon/pyramid_mmdit/modeling_embedding.py",
+              "neodragon/pyramid_mmdit/modeling_normalization.py",
+              "neodragon/blob/main/neodragon/distil_t5.py"
+            ]
+          },
+          "lineCount": 60,
+          "patterns": [
+            "Copyright(\\s)*(\\(c\\)|©)?",
+            "SPDX-License-Identifier|Redistribution and use in source and binary forms, with or without"
+          ],
+          "flags": "i"
+        }
+      }
+    }
+  }
+}

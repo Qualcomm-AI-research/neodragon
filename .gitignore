@@ -131,6 +131,5 @@ models/
 # ignore output videos
 output/
 
-# ignore linting stuff:
-repolint.json
+# ignore linting logs:
 repolinter_log.txt
