@@ -40,7 +40,7 @@
               "neodragon/pyramid_mmdit/modeling_block.py",
               "neodragon/pyramid_mmdit/modeling_embedding.py",
               "neodragon/pyramid_mmdit/modeling_normalization.py",
-              "neodragon/blob/main/neodragon/distil_t5.py"
+              "neodragon/distil_t5.py"
             ]
           },
           "lineCount": 60,

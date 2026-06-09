@@ -128,7 +128,7 @@ dmypy.json
 # ignore the model files:
 models/
 
-# ignore output videos
+# ignore output videos:
 output/
 
 # ignore linting logs:
