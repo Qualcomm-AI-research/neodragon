@@ -1,5 +1,5 @@
-# Copyright (c) 2026 Qualcomm Technologies, Inc.
-# All Rights Reserved.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 import math
 from typing import List, Optional, Tuple, Union
@@ -24,7 +24,9 @@ VAE_SHIFT_FACTOR = 0.1490
 VAE_VIDEO_SCALE_FACTOR = 0.3031
 VAE_VIDEO_SHIFT_FACTOR = -0.2343
 
-DEFAULT_PROMPT_MODIFIER = ", cinematic, realistic textures, high detail, natural colours"
+DEFAULT_PROMPT_MODIFIER = (
+    ", cinematic, realistic textures, high detail, natural colours"
+)
 DEFAULT_NEGATIVE_PROMPT = (
     "cartoon style, worst quality, low quality, blurry, absolute black, "
     "absolute white, low res, extra limbs, extra digits, misplaced objects, "
@@ -150,7 +152,9 @@ def _pil_to_numpy(images: Union[Image.Image, List[Image.Image]]) -> np.ndarray:
     if isinstance(images, Image.Image):
         images = [images]
     numpy_images = [np.array(image) for image in images]
-    numpy_images = [(image.astype(np.float32) / 255.0) * 2 - 1 for image in numpy_images]
+    numpy_images = [
+        (image.astype(np.float32) / 255.0) * 2 - 1 for image in numpy_images
+    ]
     return np.stack(numpy_images)
 
 
@@ -162,7 +166,10 @@ def _downsample_noise_2x(latents: torch.FloatTensor, times: int) -> torch.FloatT
         width //= 2
         # the multiplication by 2.0 is to keep the variance consistent after downsampling
         latents = (
-            torch.nn.functional.interpolate(latents, size=(height, width), mode="bilinear") * 2.0
+            torch.nn.functional.interpolate(
+                latents, size=(height, width), mode="bilinear"
+            )
+            * 2.0
         )
     latents = rearrange(latents, "(b t) c h w -> b c t h w", t=num_frames)
     return latents
@@ -198,7 +205,9 @@ def _prepare_past_condition_latents(
             cur_unit_ptx += 1
             chunk_begin = -(cur_unit_ptx * frames_per_unit)
             chunk_end = -((cur_unit_ptx - 1) * frames_per_unit)
-            cond_latents = history_latents_pyramid[cur_stage][:, :, chunk_begin:chunk_end, ...]
+            cond_latents = history_latents_pyramid[cur_stage][
+                :, :, chunk_begin:chunk_end, ...
+            ]
             stage_input.append(cond_latents)
         if cur_stage == 0 and cur_unit_ptx < cur_unit_num:
             cond_latents = history_latents_pyramid[0][
@@ -228,7 +237,9 @@ def _decode_latent(
         latents = (latents / VAE_SCALE_FACTOR) + VAE_SHIFT_FACTOR
     else:
         latents[:, :, :1] = (latents[:, :, :1] / VAE_SCALE_FACTOR) + VAE_SHIFT_FACTOR
-        latents[:, :, 1:] = (latents[:, :, 1:] / VAE_VIDEO_SCALE_FACTOR) + VAE_VIDEO_SHIFT_FACTOR
+        latents[:, :, 1:] = (
+            latents[:, :, 1:] / VAE_VIDEO_SCALE_FACTOR
+        ) + VAE_VIDEO_SHIFT_FACTOR
 
     video = vae.decode(latents).sample
     video = rearrange(video, "B C T H W -> (B T) H W C")
@@ -265,8 +276,12 @@ def _generate_one_unit(
     is_first_frame = all(len(cond) == 0 for cond in past_conditions)
 
     for stage in range(num_stages):
-        timesteps = scheduler.get_stage_timesteps(num_inference_steps[stage], stage, device=device)
-        sigmas = scheduler.get_stage_sigmas(num_inference_steps[stage], stage, device=device)
+        timesteps = scheduler.get_stage_timesteps(
+            num_inference_steps[stage], stage, device=device
+        )
+        sigmas = scheduler.get_stage_sigmas(
+            num_inference_steps[stage], stage, device=device
+        )
 
         if stage > 0:
             with Timer(f"Upsample from stage {stage-1} to stage {stage}", profile):
@@ -290,7 +305,9 @@ def _generate_one_unit(
                 )
 
                 timestep = (
-                    timesteps[t].expand(latent_model_input.shape[0]).to(latent_model_input.dtype)
+                    timesteps[t]
+                    .expand(latent_model_input.shape[0])
+                    .to(latent_model_input.dtype)
                 )
                 sigma = sigmas[t].to(latent_model_input.dtype)
                 sigma_next = sigmas[t + 1].to(latent_model_input.dtype)
@@ -373,8 +390,12 @@ def generate_hybrid(
     device: torch.device = torch.device("cuda"),
     dtype: torch.dtype = torch.bfloat16,
 ):
-    prompt_modifier = DEFAULT_PROMPT_MODIFIER if prompt_modifier is None else prompt_modifier
-    negative_prompt = DEFAULT_NEGATIVE_PROMPT if negative_prompt is None else negative_prompt
+    prompt_modifier = (
+        DEFAULT_PROMPT_MODIFIER if prompt_modifier is None else prompt_modifier
+    )
+    negative_prompt = (
+        DEFAULT_NEGATIVE_PROMPT if negative_prompt is None else negative_prompt
+    )
 
     with Timer("First Frame Generation", profile):
         first_frame = first_frame_gen_pipeline(
@@ -435,8 +456,12 @@ def generate(
     device: torch.device = torch.device("cuda"),
     dtype: torch.dtype = torch.bfloat16,
 ):
-    prompt_modifier = DEFAULT_PROMPT_MODIFIER if prompt_modifier is None else prompt_modifier
-    negative_prompt = DEFAULT_NEGATIVE_PROMPT if negative_prompt is None else negative_prompt
+    prompt_modifier = (
+        DEFAULT_PROMPT_MODIFIER if prompt_modifier is None else prompt_modifier
+    )
+    negative_prompt = (
+        DEFAULT_NEGATIVE_PROMPT if negative_prompt is None else negative_prompt
+    )
 
     num_latent_frames = ((num_frames - 1) // vae.config.temporal_downsample_scale) + 1
     assert (
@@ -454,8 +479,8 @@ def generate(
         prompt = prompt + prompt_modifier
         negative_prompt = negative_prompt or ""
 
-        prompt_embeds, prompt_attention_mask, pooled_prompt_embeds = text_encoder_bundle(
-            prompt, device
+        prompt_embeds, prompt_attention_mask, pooled_prompt_embeds = (
+            text_encoder_bundle(prompt, device)
         )
 
         if do_classifier_free_guidance:
@@ -537,7 +562,9 @@ def generate(
                     prompt_attention_mask=prompt_attention_mask,
                     pooled_prompt_embeds=pooled_prompt_embeds,
                     num_inference_steps=(
-                        num_inference_steps if unit_index == 0 else video_num_inference_steps
+                        num_inference_steps
+                        if unit_index == 0
+                        else video_num_inference_steps
                     ),
                     device=device,
                     dtype=dtype,

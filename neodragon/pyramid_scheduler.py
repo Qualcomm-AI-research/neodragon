@@ -1,5 +1,5 @@
-# Copyright (c) 2026 Qualcomm Technologies, Inc.
-# All Rights Reserved.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 import math
 from dataclasses import dataclass
@@ -62,9 +62,9 @@ class PyramidFlowMatchEulerDiscreteScheduler(SchedulerMixin, ConfigMixin):
     def _init_sigmas(self) -> None:
         num_train_timesteps = self.config.num_train_timesteps
 
-        timesteps = np.linspace(1, num_train_timesteps, num_train_timesteps, dtype=np.float32)[
-            ::-1
-        ].copy()
+        timesteps = np.linspace(
+            1, num_train_timesteps, num_train_timesteps, dtype=np.float32
+        )[::-1].copy()
         timesteps = torch.from_numpy(timesteps).to(dtype=torch.float32)
 
         # sigmas and timesteps
@@ -88,7 +88,9 @@ class PyramidFlowMatchEulerDiscreteScheduler(SchedulerMixin, ConfigMixin):
             end_indice = int(stage_range[i_s + 1] * training_steps)
             end_indice = min(end_indice, training_steps)
             start_sigma = self.sigmas[start_indice].item()
-            end_sigma = self.sigmas[end_indice].item() if end_indice < training_steps else 0.0
+            end_sigma = (
+                self.sigmas[end_indice].item() if end_indice < training_steps else 0.0
+            )
             self.orig_start_sigmas[i_s] = start_sigma
 
             if i_s != 0:

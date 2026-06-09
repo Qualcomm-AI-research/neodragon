@@ -1,5 +1,5 @@
-# Copyright (c) 2026 Qualcomm Technologies, Inc.
-# All Rights Reserved.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 import random
 from pathlib import Path
@@ -50,7 +50,11 @@ def make_fixed_video_grid(
     else:
         # prefer more columns than rows
         num_columns = int(np.ceil(np.sqrt(int(videos.shape[1])))) + 1
-    video_grid = torch.stack([make_grid(frame, nrow=num_columns, padding=0) for frame in videos])
+    video_grid = torch.stack(
+        [make_grid(frame, nrow=num_columns, padding=0) for frame in videos]
+    )
     video_grid = video_grid.float() / 255.0
     video_grid = rearrange(video_grid, "t c h w -> t h w c")
-    export_to_video(video_grid.cpu().numpy(), str(output_path / output_file_name), fps=24)
+    export_to_video(
+        video_grid.cpu().numpy(), str(output_path / output_file_name), fps=24
+    )

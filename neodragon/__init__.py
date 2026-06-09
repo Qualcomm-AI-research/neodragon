@@ -1,5 +1,5 @@
-# Copyright (c) 2026 Qualcomm Technologies, Inc.
-# All Rights Reserved.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
@@ -117,7 +117,9 @@ class NeodragonPipeline(DiffusionPipeline):
         local_model_path = snapshot_download(model_id, cache_dir=cache_dir)
 
         # Load all components:
-        text_encoder_bundle = TextEncoderBundle.from_pretrained(local_model_path, **kwargs)
+        text_encoder_bundle = TextEncoderBundle.from_pretrained(
+            local_model_path, **kwargs
+        )
         # NOTE: the context adapter and DIT differ between monolithic and hybrid modes
         context_adapter_id = (
             CONTEXT_ADAPTER_ID if mode == "hybrid" else MULTISTEP_CONTEXT_ADAPTER_ID
@@ -127,7 +129,9 @@ class NeodragonPipeline(DiffusionPipeline):
         )
         dit_id = DIT_ID if mode == "hybrid" else MULTISTEP_DIT_ID
         dit = PyramidMMDiT.from_pretrained(f"{local_model_path}/{dit_id}", **kwargs)
-        vae = AsymmetricCausalVideoVAE.from_pretrained(f"{local_model_path}/{VAE_ID}", **kwargs)
+        vae = AsymmetricCausalVideoVAE.from_pretrained(
+            f"{local_model_path}/{VAE_ID}", **kwargs
+        )
         scheduler = PyramidFlowMatchEulerDiscreteScheduler()
 
         return cls(

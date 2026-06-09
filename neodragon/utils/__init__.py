@@ -1,5 +1,5 @@
-# Copyright (c) 2026 Qualcomm Technologies, Inc.
-# All Rights Reserved.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 import argparse
 import datetime
@@ -25,7 +25,9 @@ def _setup_for_distributed(is_master: bool) -> None:
     __builtin__.print = print
 
 
-def init_distributed_mode(args: argparse.Namespace, init_pytorch_ddp: bool = True) -> None:
+def init_distributed_mode(
+    args: argparse.Namespace, init_pytorch_ddp: bool = True
+) -> None:
     if int(os.getenv("OMPI_COMM_WORLD_SIZE", "0")) > 0:
         os.environ["LOCAL_RANK"] = os.environ["OMPI_COMM_WORLD_LOCAL_RANK"]
         os.environ["RANK"] = os.environ["OMPI_COMM_WORLD_RANK"]
@@ -49,7 +51,9 @@ def init_distributed_mode(args: argparse.Namespace, init_pytorch_ddp: bool = Tru
     args.dist_backend = "nccl"
     args.dist_url = "env://"
     print(
-        "| distributed init (rank {}): {}, gpu {}".format(args.rank, args.dist_url, args.gpu),
+        "| distributed init (rank {}): {}, gpu {}".format(
+            args.rank, args.dist_url, args.gpu
+        ),
         flush=True,
     )
 

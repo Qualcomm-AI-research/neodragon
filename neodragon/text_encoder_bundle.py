@@ -1,5 +1,5 @@
-# Copyright (c) 2026 Qualcomm Technologies, Inc.
-# All Rights Reserved.
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 from typing import Any, List, Tuple
 
@@ -95,7 +95,9 @@ class TextEncoderBundle(ModelMixin, ConfigMixin):
             )
 
             text_input_ids = text_inputs.input_ids
-            prompt_embed = text_encoder(text_input_ids.to(device), output_hidden_states=True)[0]
+            prompt_embed = text_encoder(
+                text_input_ids.to(device), output_hidden_states=True
+            )[0]
             pooled_prompt_embeds.append(prompt_embed)
         pooled_prompt_embeds = torch.cat(pooled_prompt_embeds, dim=-1)
 
