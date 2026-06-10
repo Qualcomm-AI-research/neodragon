@@ -58,12 +58,20 @@
 </div>
 
 ```bibtex
-@article{karnewar2025neodragon,
-  author  = {Animesh Karnewar and Denis Korzhenkov and Ioannis Lelekas and Noor Fathima and Adil Karjauv and Hanwen Xiong and Vancheeswaran Vaidyanathan and Will Zeng and Rafael Esteves and Tushar Singhal and Fatih Porikli and Mohsen Ghafoorian and Amirhossein Habibian},
-  title   = {Neodragon: Mobile Video Generation using Diffusion Transformer},
-  journal = {arXiv preprint arXiv:2511.06055},
-  year    = {2025},
-  note    = {Published in the Proceedings of ICLR 2026. OpenReview: \url{https://openreview.net/forum?id=XBzIhhwv8d}; arXiv technical-report: \url{https://arxiv.org/abs/2511.06055}}
+@inproceedings{
+  karnewar2026neodragon,
+  title={Neodragon: Mobile Video Generation Using Diffusion Transformer},
+  author={Animesh Karnewar and Denis Korzhenkov and Ioannis Lelekas and Noor Fathima and Adil Karjauv and Mohsen Ghafoorian and Amir Habibian},
+  booktitle={The Fourteenth International Conference on Learning Representations},
+  year={2026},
+  url={https://openreview.net/forum?id=XBzIhhwv8d}
+}
+@article{karnewar2025neodragonTR,
+  title={Neodragon: Mobile Video Generation using Diffusion Transformer},
+  author={Karnewar, Animesh and Korzhenkov, Denis and Lelekas, Ioannis and Karjauv, Adil and Fathima, Noor and Xiong, Hanwen and Vaidyanathan, Vancheeswaran and Zeng, Will and Esteves, Rafael and Singhal, Tushar and Porikli, Fatih and Ghafoorian, Mohsen and Habibian Amirhossein},
+  journal={arXiv preprint arXiv:2511.06055},
+  url={https://qualcomm-ai-research.github.io/neodragon},
+  year={2025}
 }
 ```
 
