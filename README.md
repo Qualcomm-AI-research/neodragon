@@ -194,4 +194,4 @@ The `hybrid` mode inference with this code corresponds to the main **(Ours) Neod
 Thanks to these great repositories: [Pyramidal-Flow](https://github.com/jy0205/Pyramid-Flow), [Distil-T5](https://github.com/LifuWang-66/DistillT5/tree/main/models), [TinyVAE-HV](https://github.com/madebyollin/taehv), and many other inspiring works in the Video Generation community.
 
 ## License
-**Neodragon** is licensed under the [BSD-3-clause License](https://spdx.org/licenses/BSD-3-Clause.html). See [LICENSE.txt](LICENSE.txt) for the full license text.
+**Neodragon** is licensed under the [BSD-3-clause-Clear License](https://spdx.org/licenses/BSD-3-Clause-Clear.html). See [LICENSE.txt](LICENSE.txt) for the full license text.
