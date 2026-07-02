@@ -28,7 +28,7 @@ from neodragon.utils import (
 
 FPS = 24
 MAX_VIDEO_WRITER_WORKERS = 16
-HF_MODEL_ID = "karnewar/Neodragon"
+HF_MODEL_ID = "Qualcomm-AI-Research/Neodragon"
 
 
 class _PromptsDataset(Dataset):

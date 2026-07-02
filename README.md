@@ -28,7 +28,7 @@
   <a href="https://arxiv.org/abs/2511.06055">
     <img src="https://img.shields.io/badge/arXiv-2511.06055-b31b1b.svg" alt="arXiv">
   </a>
-  <a href="https://huggingface.co/karnewar/Neodragon">
+  <a href="https://huggingface.co/Qualcomm-AI-Research/Neodragon">
     <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue" alt="Hugging Face Model">
   </a>
   <a href="https://openreview.net/forum?id=XBzIhhwv8d">
@@ -79,7 +79,7 @@
 **Neodragon** is an efficient text‑to‑video generation system that produces short, high‑fidelity videos directly from text prompts, prioritising practical, low‑latency inference and compact deployment over large‑scale offline synthesis.
 
 ## Quick Start
-First, clone this repository on your machine (local / virtual), and download the [pretrained model](https://huggingface.co/karnewar/Neodragon) from huggingface under `models/Neodragon` directory. Even if you don't download the huggingface model, the code will download it the very first time you run inference. 
+First, clone this repository on your machine (local / virtual), and download the [pretrained model](https://huggingface.co/Qualcomm-AI-Research/Neodragon) from huggingface under `models/Neodragon` directory. Even if you don't download the huggingface model, the code will download it the very first time you run inference. 
 Then choose one of the two following ways for setting up the environment for running this code. We recommend the first `Docker` way. 
 
 ### 1. Docker way
